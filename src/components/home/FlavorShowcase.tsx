@@ -10,9 +10,10 @@ interface FlavorSectionProps {
     tagline: string;
     description: string;
     alignment: "left" | "right";
+    index: number;
 }
 
-const flavors: FlavorSectionProps[] = [
+const flavors: Omit<FlavorSectionProps, "index">[] = [
     {
         image: "/images/Rasmalai.jpg",
         tagline: "Royal. Saffron. Soft.",
