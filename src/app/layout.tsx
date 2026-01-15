@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -49,6 +50,7 @@ export default function RootLayout({
           src="//www.instagram.com/embed.js"
           strategy="beforeInteractive"
         />
+        <Analytics />
       </body>
     </html>
   );
