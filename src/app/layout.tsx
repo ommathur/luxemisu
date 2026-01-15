@@ -23,6 +23,9 @@ const lato = Lato({
 export const metadata: Metadata = {
   title: "LuxeMisu | Premium Tiramisu Café",
   description: "India's first Tiramisu-focused café in Kalyan Nagar, Bengaluru.",
+  icons: {
+    icon: "/images/Logo.ico",
+  },
 };
 
 export default function RootLayout({
