@@ -37,7 +37,7 @@ export function HeroSection() {
                     className="space-y-8"
                 >
                     <span className="inline-block py-1 px-4 border border-primary/20 rounded-full text-xs font-bold tracking-[0.2em] uppercase text-primary/60">
-                        Est. 2024 • Bengaluru
+                        Est. 2025 • Bengaluru
                     </span>
 
                     <h2 className="text-3xl md:text-5xl lg:text-6xl text-primary font-serif font-bold leading-tight tracking-tight">
