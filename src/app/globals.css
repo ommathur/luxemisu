@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors - User Provided */
+  --primary: #553624;
+  /* Espresso Brown */
+  --primary-foreground: #ffffff;
+
+  --secondary: #a68f7d;
+  /* Mocha */
+  --secondary-foreground: #ffffff;
+
+  --accent: #a7453a;
+  /* Terracotta (Highlights/CTA) */
+  --accent-foreground: #ffffff;
+
+  --background: #f5ece1;
+  /* Mascarpone Cream */
+  --foreground: #3e2b22;
+  /* Deep Charcoal/Chocolate (Derived) */
+
+  --muted: #e3ddd0;
+  /* Biscuit */
+  --muted-foreground: #69685b;
+
+  --card: #ffffff;
+  --card-foreground: #3e2b22;
+
+  --popover: #ffffff;
+  --popover-foreground: #3e2b22;
+
+  --border: #d6cac0;
+  --input: #d6cac0;
+  --ring: #a7453a;
+  /* Ring matches accent */
+
+  --radius: 0.5rem;
 }
 
-@theme inline {
+.dark {
+  /* Dark mode mapping */
+  --background: #3e2b22;
+  --foreground: #f5ece1;
+  --primary: #f5ece1;
+  --primary-foreground: #553624;
+  --secondary: #644541;
+  --secondary-foreground: #f5ece1;
+  --accent: #a7453a;
+  --accent-foreground: #ffffff;
+  --muted: #553624;
+  --muted-foreground: #a68f7d;
+  --card: #2c1e18;
+  --card-foreground: #f5ece1;
+  --popover: #2c1e18;
+  --popover-foreground: #f5ece1;
+  --border: #644541;
+  --input: #644541;
+  --ring: #a7453a;
+}
+
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Fonts */
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-lato);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif font-bold;
+  }
+
+  .maplibregl-popup-content {
+    @apply !bg-transparent !shadow-none !p-0 !rounded-none;
+  }
+
+  .maplibregl-popup-tip {
+    @apply !hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

@@ -1,0 +1,150 @@
+/* Misu Stories Animation Styles */
+
+.stories-wrapper {
+    background: var(--background);
+    color: var(--foreground);
+    min-height: 100vh;
+    font-family: var(--font-sans);
+}
+
+.stories-wrapper *,
+.stories-wrapper *::before,
+.stories-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.stories-content-wrap {
+    background: var(--background);
+    /* Remove clip if it prevents full bleed, but usually needed for sticky behavior. 
+       Let's keep it but ensure bg is correct */
+    overflow: clip;
+}
+
+/* Header within the stories page */
+.stories-header {
+    display: none;
+}
+
+/* Section setup */
+.stories-main section {
+    min-height: 240vh;
+    /* Extra height for scroll space */
+}
+
+.stories-content-sticky {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    place-items: center;
+    align-content: center;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+}
+
+/* Grid Layout */
+.stories-grid {
+    --offset: 0;
+    --container-width: 100%;
+    /* Changed from 1600px to 100% for full scaling */
+    --gap: clamp(10px, 3vh, 30px);
+
+    width: 100%;
+    max-width: 155vh;
+    /* Constrain width based on viewport height to prevent vertical clipping */
+    /* Removing constraint */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: var(--gap);
+    margin: 0 auto;
+    align-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@media (max-width: 600px) {
+    .stories-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: calc(100% - (2 * 1rem));
+        --offset: -1;
+    }
+
+    .stories-grid>.layer:nth-of-type(1) {
+        display: none;
+    }
+
+    .stories-grid img {
+        aspect-ratio: 4 / 5;
+    }
+}
+
+/* Layers using subgrid */
+.stories-grid>.layer {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+}
+
+/* Layer 1 */
+.stories-grid>.layer:nth-of-type(1) div:nth-of-type(odd) {
+    grid-column: 1;
+}
+
+.stories-grid>.layer:nth-of-type(1) div:nth-of-type(even) {
+    grid-column: -2;
+}
+
+/* Layer 2 */
+.stories-grid>.layer:nth-of-type(2) div:nth-of-type(odd) {
+    grid-column: calc(2 + var(--offset));
+}
+
+.stories-grid>.layer:nth-of-type(2) div:nth-of-type(even) {
+    grid-column: calc(-3 - var(--offset));
+}
+
+/* Layer 3 */
+.stories-grid>.layer:nth-of-type(3) div:first-of-type {
+    grid-column: calc(3 + var(--offset));
+    grid-row: 1;
+}
+
+.stories-grid>.layer:nth-of-type(3) div:last-of-type {
+    grid-column: calc(3 + var(--offset));
+    grid-row: -1;
+}
+
+.stories-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.stories-grid .scaler {
+    position: relative;
+    grid-area: 2 / calc(3 + var(--offset));
+}
+
+.scaler {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.scaler img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    object-fit: cover;
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+}
